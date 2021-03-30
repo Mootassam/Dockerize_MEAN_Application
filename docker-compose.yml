@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  mongo-db:
+    image: mongo
+    ports:
+      - 27117:27117
+  server:
+    build: node-backend
+    image: sanjaysaini2000/meanstack_backend
+    ports:
+     - 3000:3000
+    links:
+      - mongo-db
+
+  angular: # name of the first service
+    
+    build: angular # specify the directory of the Dockerfile
+    ports:
+      - "4200:80" # specify port forewarding

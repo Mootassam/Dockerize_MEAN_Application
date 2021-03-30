@@ -1,0 +1,4 @@
+/node_modules
+/e2e
+.gitgnore
+package-lock.json
