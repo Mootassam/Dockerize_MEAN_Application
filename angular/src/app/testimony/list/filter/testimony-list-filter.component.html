@@ -1,0 +1,125 @@
+<div class="filter">
+  <app-filter-preview [values]="form.value" [fields]="fields" [expanded]="expanded" (click)="doToggleExpanded()">
+  </app-filter-preview>
+  <form (ngSubmit)="doFilter()" [formGroup]="form" #ngForm="ngForm" *ngIf="form && expanded">
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <app-autocomplete-form-field [control]="form.get(fields.category.name)" [label]="fields.category.label"
+          [fetchFn]="fields.category.fetchFn"></app-autocomplete-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.title.label }}</mat-label>
+          <input matInput [formControlName]="fields.title.name" />
+          <mat-error>
+            <app-validations [control]="form.get(fields.title.name)" [label]="fields.title.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.region.label }}</mat-label>
+          <mat-select [formControlName]="fields.region.name">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of fields.region.options" [value]="option.id">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.region.name)" [label]="fields.region.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Salma -->
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.testimonyType.label }}</mat-label>
+          <mat-select [formControlName]="fields.testimonyType.name">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of fields.testimonyType.options" [value]="option.id">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.testimonyType.name)" [label]="fields.testimonyType.label">
+            </app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.status.label }}</mat-label>
+          <mat-select [formControlName]="fields.status.name">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of fields.status.options" [value]="option.id">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.status.name)" [label]="fields.status.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.priority.label }}</mat-label>
+          <mat-select [formControlName]="fields.priority.name">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of fields.priority.options" [value]="option.id">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.priority.name)" [label]="fields.priority.label">
+            </app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <app-autocomplete-form-field [control]="form.get(fields.assignedTo.name)" [label]="fields.assignedTo.label"
+          [required]="fields.assignedTo.required" [fetchFn]="fields.assignedTo.fetchFn"></app-autocomplete-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>{{ fields.anonymous.label }}</mat-label>
+          <mat-select [formControlName]="fields.anonymous.name">
+            <mat-option>--</mat-option>
+            <mat-option [value]="true">
+              {{ fields.anonymous.yesLabel }}
+            </mat-option>
+            <mat-option [value]="false">
+              {{ fields.anonymous.noLabel }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.anonymous.name)" [label]="fields.anonymous.label">
+            </app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-xs-12 col-lg-6">
+        <app-autocomplete-form-field [control]="form.get(fields.transferTo.name)" [label]="fields.transferTo.label"
+          [required]="fields.transferTo.required" [fetchFn]="fields.transferTo.fetchFn"></app-autocomplete-form-field>
+      </div>
+    </div>
+
+    <div class="filter-buttons">
+      <button mat-raised-button [disabled]="loading" color="primary" type="submit">
+        <mat-icon inline fontSet="fas" fontIcon="fa-search"></mat-icon>&#160;
+        <app-i18n key="common.search"></app-i18n>
+      </button>
+      <button mat-flat-button [disabled]="loading" (click)="doReset()" type="button" color="accent">
+        <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+        <app-i18n key="common.reset"></app-i18n>
+      </button>
+    </div>
+  </form>
+</div>

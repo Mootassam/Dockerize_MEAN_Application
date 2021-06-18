@@ -1,16 +1,34 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+const backendUrl = `http://172.16.224.151:8080/api`;
+const urlsocket = `http://172.16.224.151:8080`;
 
-export const environment = {
-  production: true
+/**
+ * Frontend Url.
+ */
+const frontendUrl = {
+  host: 'localhost:4200',
+  protocol: 'http',
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
+/**
+ * Tenant Mode
+ * multi: Allow new users to create new tenants.
+ * multi-with-subdomain: Same as multi, but enable access to the tenant via subdomain.
+ * single: One tenant, the first user to register will be the admin.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+const tenantMode = 'single';
+
+/**
+ * Plan payments configuration.
+ */
+const isPlanEnabled = false;
+const stripePublishableKey = '';
+
+export const environment = {
+  production: false,
+  frontendUrl,
+  backendUrl,
+  tenantMode,
+  isPlanEnabled,
+  stripePublishableKey,
+  urlsocket,
+};

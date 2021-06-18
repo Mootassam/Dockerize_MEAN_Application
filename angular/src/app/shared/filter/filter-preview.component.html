@@ -1,0 +1,31 @@
+<div class="filter-preview">
+  <div class="filter-preview-left">
+    <span *ngIf="expanded || !items.length"
+      ><app-i18n key="common.filters"></app-i18n
+    ></span>
+
+    <ng-container *ngIf="!expanded && items.length">
+      <app-i18n key="common.filters"></app-i18n>:
+      <span class="filter-preview-values">
+        <mat-chip *ngFor="let item of items">
+          {{ item.label }}: {{ item.value }}
+        </mat-chip>
+      </span>
+    </ng-container>
+  </div>
+
+  <div class="filter-preview-right">
+    <mat-icon
+      *ngIf="expanded"
+      inline
+      fontSet="fas"
+      fontIcon="fa-chevron-up"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="!expanded"
+      inline
+      fontSet="fas"
+      fontIcon="fa-chevron-down"
+    ></mat-icon>
+  </div>
+</div>

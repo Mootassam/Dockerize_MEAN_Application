@@ -1,0 +1,62 @@
+<div class="margin-top: 16px">
+                    <div class="row">
+                      <div
+                        style="margin-bottom: 1em;"
+                        class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+                      >
+    
+                      <div *ngIf="loadingc" class="app-page-spinner">
+                        <mat-spinner color="accent"></mat-spinner>
+                      </div>
+                      <div *ngIf="!loadingc">
+                      
+                      <app-dashboard-chart
+                        [data]="doughnut"
+                      ></app-dashboard-chart>
+                      </div>
+
+                      <br>
+                      <div *ngIf="loadings" class="app-page-spinner">
+                        <mat-spinner color="accent"></mat-spinner>
+                      </div>
+                      <div *ngIf="!loadings">
+                        <app-dashboard-chart
+                          [data]="bar"
+                        ></app-dashboard-chart>
+                      </div>
+
+
+
+                      </div>
+
+                      <div
+                      style="margin-bottom: 1em; height: 100%;"
+                      class="col-xs-12 col-sm-12 col-md-12 col-lg-6"
+                      >                         
+<mat-card>
+  <mat-tab-group>
+
+    <mat-tab label="{{waitting}}">
+      <ng-template matTabContent>
+        <app-waitting></app-waitting>      </ng-template>
+    </mat-tab>
+    
+    <mat-tab label="{{Open}}">
+      <ng-template matTabContent>
+        <app-open></app-open>      </ng-template>
+    </mat-tab>
+    <mat-tab label="{{Closed}}">
+      <ng-template matTabContent>
+        <app-closed></app-closed>  
+          </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
+                      </div>
+
+                    </div>
+
+
+
+</div>

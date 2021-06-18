@@ -1,0 +1,57 @@
+<form class="form" (ngSubmit)="doSave()" [formGroup]="form" #ngForm="ngForm" *ngIf="form">
+
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleFR.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleFR.name" [required]="fields.titleFR.required" appAutofocus />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleFR.name)" [label]="fields.titleFR.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleEN.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleEN.name" [required]="fields.titleEN.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleEN.name)" [label]="fields.titleEN.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleAR.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleAR.name" [required]="fields.titleAR.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleAR.name)" [label]="fields.titleAR.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <div class="form-buttons" [class.form-buttons-modal]="modal">
+    <button mat-raised-button [disabled]="saveLoading" color="primary" type="submit">
+      <mat-icon inline fontSet="far" fontIcon="fa-save"></mat-icon>&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button mat-flat-button [disabled]="saveLoading" color="accent" (click)="doReset()" type="button">
+      <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button mat-flat-button [disabled]="saveLoading" color="warn" type="button" (click)="cancel.emit()">
+      <mat-icon inline fontSet="fas" fontIcon="fa-times"></mat-icon>&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>

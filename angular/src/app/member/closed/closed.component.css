@@ -1,0 +1,12 @@
+/* ::ng-deep.mat-pseudo-checkbox {
+  display: none !important;
+} */
+
+.textime {
+  border-color: #523f69;
+  color: #000000;
+  font-size: 12px;
+  gap: normal;
+  letter-spacing: -0.084px;
+  line-height: 20px;
+}

@@ -1,0 +1,36 @@
+.dt-sidebar {
+  position: relative;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #131728;
+  transition: all 0.2s ease;
+}
+
+.hr {
+  color: #6f6d8f;
+  border-top: 1px;
+}
+.dt-side-nav__header {
+  position: relative;
+  text-transform: capitalize;
+  padding: 6px 0 0px 16px;
+  line-height: 1.2;
+  color: #6f6d8f;
+  /* font-size: 1.4rem; */
+}
+::ng-deep .customize {
+  background: red;
+}
+.markall {
+  display: inline !important;
+  font-size: 10px !important;
+  color: #2020b7 !important;
+  line-height: 10px !important;
+  max-height: auto !important;
+  max-width: auto !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  mso-hide: none !important;
+}

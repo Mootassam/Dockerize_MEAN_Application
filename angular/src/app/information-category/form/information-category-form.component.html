@@ -1,0 +1,91 @@
+<form class="form" (ngSubmit)="doSave()" [formGroup]="form" #ngForm="ngForm" *ngIf="form">
+
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleFR.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleFR.name" [required]="fields.titleFR.required" appAutofocus />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleFR.name)" [label]="fields.titleFR.label"></app-validations>
+        </mat-error>
+
+
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.descriptionFR.label }}</mat-label>
+        <textarea matInput [formControlName]="fields.descriptionFR.name" [rows]="4"
+          [required]="fields.descriptionFR.required"></textarea>
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.descriptionFR.name)" [label]="fields.descriptionFR.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleEN.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleEN.name" [required]="fields.titleEN.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleEN.name)" [label]="fields.titleEN.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.descriptionEN.label }}</mat-label>
+        <textarea matInput [formControlName]="fields.descriptionEN.name" [rows]="4"
+          [required]="fields.descriptionEN.required"></textarea>
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.descriptionEN.name)" [label]="fields.descriptionEN.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleAR.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleAR.name" [required]="fields.titleAR.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleAR.name)" [label]="fields.titleAR.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.descriptionAR.label }}</mat-label>
+        <textarea matInput [formControlName]="fields.descriptionAR.name" [rows]="4"
+          [required]="fields.descriptionAR.required"></textarea>
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.descriptionAR.name)" [label]="fields.descriptionAR.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+
+
+  <div class="form-buttons" [class.form-buttons-modal]="modal">
+    <button mat-raised-button [disabled]="saveLoading" color="primary" type="submit">
+      <mat-icon inline fontSet="far" fontIcon="fa-save"></mat-icon>&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button mat-flat-button color="accent" [disabled]="saveLoading" color="accent" (click)="doReset()" type="button">
+      <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button mat-flat-button [disabled]="saveLoading" color="warn" type="button" (click)="cancel.emit()">
+      <mat-icon inline fontSet="fas" fontIcon="fa-times"></mat-icon>&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>

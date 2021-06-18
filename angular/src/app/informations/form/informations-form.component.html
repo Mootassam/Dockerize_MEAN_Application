@@ -1,0 +1,255 @@
+<form class="form" (ngSubmit)="doSave()" [formGroup]="form" #ngForm="ngForm" *ngIf="form">
+
+  <div class="row">
+    <div class="col-md-6">
+    <mat-form-field floatLabel="always" appearance="outline">
+      <mat-label>{{ fields.type.label }}</mat-label>
+      <mat-select
+        [formControlName]="fields.type.name"
+      >
+        <mat-option
+          *ngFor="let option of fields.type.options"
+          [value]="option.id"
+        >
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.type.name)"
+          [label]="fields.type.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-6">
+    <mat-form-field floatLabel="always" appearance="outline">
+      <mat-label>{{ fields.publish.label }}</mat-label>
+      <mat-select
+        [formControlName]="fields.publish.name"
+      >
+        <mat-option
+          *ngFor="let option of fields.publish.options"
+          [value]="option.id"
+        >
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.publish.name)"
+          [label]="fields.publish.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <app-information-category-form-field [control]="form.get(fields.category.name)" [label]="fields.category.label"
+        [required]="fields.category.required" [fetchFn]="fields.category.fetchFn" [mapperFn]="fields.category.mapperFn"
+        [showCreate]="!modal" [submitted]="ngForm.submitted" mode="single"></app-information-category-form-field>
+    </div>
+
+    <div class="col-md-4">
+      <app-tags-form-field [control]="form.get(fields.tags.name)" [label]="fields.tags.label"
+        [required]="fields.tags.required" [fetchFn]="fields.tags.fetchFn" [mapperFn]="fields.tags.mapperFn"
+        [showCreate]="!modal" [submitted]="ngForm.submitted" mode="multiple"></app-tags-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titleFR.label }}</mat-label>
+        <input matInput [formControlName]="fields.titleFR.name" [required]="fields.titleFR.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titleFR.name)" [label]="fields.titleFR.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.descriptionFR.label }}</mat-label>
+        <textarea matInput [formControlName]="fields.descriptionFR.name" [rows]="4"
+          [required]="fields.descriptionFR.required"></textarea>
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.descriptionFR.name)" [label]="fields.descriptionFR.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+
+
+
+    </div>
+    <div class="col-md-4">
+
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titreEN.label }}</mat-label>
+        <input matInput [formControlName]="fields.titreEN.name" [required]="fields.titreEN.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titreEN.name)" [label]="fields.titreEN.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.descriptionEN.label }}</mat-label>
+        <textarea matInput [formControlName]="fields.descriptionEN.name" [rows]="4"
+          [required]="fields.descriptionEN.required"></textarea>
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.descriptionEN.name)" [label]="fields.descriptionEN.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+
+
+
+    </div>
+    <div class="col-md-4">
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.titreAR.label }}</mat-label>
+        <input matInput [formControlName]="fields.titreAR.name" [required]="fields.titreAR.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.titreAR.name)" [label]="fields.titreAR.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+
+
+
+
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.descriptionAR.label }}</mat-label>
+        <textarea matInput [formControlName]="fields.descriptionAR.name" [rows]="4"
+          [required]="fields.descriptionAR.required"></textarea>
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.descriptionAR.name)" [label]="fields.descriptionAR.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+ 
+
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.addressFR.label }}</mat-label>
+        <input matInput [formControlName]="fields.addressFR.name" [required]="fields.addressFR.required" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.addressEN.label }}</mat-label>
+        <input matInput [formControlName]="fields.addressEN.name" [required]="fields.addressEN.required" />
+      </mat-form-field>
+    </div>
+
+
+    <div class="col-md-4">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.addressAR.label }}</mat-label>
+        <input matInput [formControlName]="fields.addressAR.name" [required]="fields.addressAR.required" />
+      </mat-form-field>
+    </div>
+ 
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.num_Tel.label }}</mat-label>
+        <input matInput [formControlName]="fields.num_Tel.name" [required]="fields.num_Tel.required" />
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.email.label }}</mat-label>
+        <input matInput [formControlName]="fields.email.name" [required]="fields.email.required" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.site_web.label }}</mat-label>
+        <input matInput [formControlName]="fields.site_web.name" [required]="fields.site_web.required" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.videos.label }}</mat-label>
+        <input matInput [formControlName]="fields.videos.name" [required]="fields.videos.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.videos.name)" [label]="fields.videos.label"></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field floatLabel="always" appearance="outline">
+        <mat-label>{{ fields.googleMapsPosition.label }}</mat-label>
+        <input matInput [formControlName]="fields.googleMapsPosition.name"
+          [required]="fields.googleMapsPosition.required" />
+
+        <mat-error>
+          <app-validations [control]="form.get(fields.googleMapsPosition.name)"
+            [label]="fields.googleMapsPosition.label">
+          </app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <app-image-form-field [formControl]="form.get(fields.images.name)" [label]="fields.images.label"
+        [storage]="fields.images.storage" [required]="fields.images.required" [max]="fields.images.max"
+        [submitted]="ngForm.submitted"></app-image-form-field>
+    </div>
+    <div class="col-md-6">
+      <app-file-form-field [formControl]="form.get(fields.document.name)" [label]="fields.document.label"
+        [formats]="fields.document.formats" [storage]="fields.document.storage" [required]="fields.document.required"
+        [max]="fields.document.max" [submitted]="ngForm.submitted"></app-file-form-field>
+    </div>
+  </div>
+
+
+  <div class="form-buttons" [class.form-buttons-modal]="modal">
+    <button mat-raised-button [disabled]="saveLoading" color="primary" type="submit">
+      <mat-icon inline fontSet="far" fontIcon="fa-save"></mat-icon>&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+    <button mat-flat-button color="accent" [disabled]="saveLoading" (click)="doReset()" type="button">
+      <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button mat-flat-button [disabled]="saveLoading" color="warn" type="button" (click)="cancel.emit()">
+      <mat-icon inline fontSet="fas" fontIcon="fa-times"></mat-icon>&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+  </div>
+</form>

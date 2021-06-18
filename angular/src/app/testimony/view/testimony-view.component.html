@@ -1,0 +1,241 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n
+      key="entities.testimony.view.title"
+    ></app-i18n>
+  </h1>
+
+  <app-testimony-view-toolbar></app-testimony-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <mat-tab-group>
+      <mat-tab
+        [label]="i18n('common.information')"
+        class="tab"
+      >
+        <div class="mat-tab">
+          <div class="row">
+            <div class="col-md-3">
+              <app-view-item-text
+                [label]="fields.testimonyType.label"
+                [value]="presenter(record, 'testimonyType')"
+              >
+              </app-view-item-text>
+            </div>
+
+            <div class="col-md-3">
+              <app-view-item-relation-to-one
+                [label]="fields.category.label"
+                [url]="fields.category.viewUrl"
+                [permission]="
+                  fields.category.readPermission
+                "
+                [value]="presenter(record, 'category')"
+              >
+              </app-view-item-relation-to-one>
+            </div>
+
+            <div class="col-md-3">
+              <app-view-item-text
+                [label]="fields.priority.label"
+                [value]="presenter(record, 'priority')"
+              >
+              </app-view-item-text>
+            </div>
+            <div class="col-md-2">
+              <app-view-item-text
+                [label]="fields.status.label"
+                [value]="presenter(record, 'status')"
+              >
+              </app-view-item-text>
+            </div>
+            <div class="col-md-1">
+              <app-view-item-text
+                [label]="fields.anonymous.label"
+                [value]="presenter(record, 'anonymous')"
+              >
+              </app-view-item-text>
+            </div>
+          </div>
+
+          <mat-divider
+            style="margin-top: 10px; margin-bottom: 10px"
+          ></mat-divider>
+
+          <div class="row">
+            <div class="col-md-3">
+              <app-view-item-text
+                [label]="fields.title.label"
+                [value]="presenter(record, 'title')"
+              >
+              </app-view-item-text>
+            </div>
+
+            <div class="col-md-3">
+              <app-view-item-text
+                [label]="fields.contact.label"
+                [value]="presenter(record, 'contact')"
+              >
+              </app-view-item-text>
+            </div>
+
+            <div class="col-md-6">
+              <app-view-item-text
+                [label]="fields.description.label"
+                [value]="presenter(record, 'description')"
+              >
+              </app-view-item-text>
+            </div>
+          </div>
+
+          <mat-divider
+            style="margin-top: 10px; margin-bottom: 10px"
+          ></mat-divider>
+          <div class="row">
+            <div class="col-md-3">
+              <app-view-item-relation-to-one
+                [label]="fields.assignedTo.label"
+                [url]="fields.assignedTo.viewUrl"
+                [permission]="
+                  fields.assignedTo.readPermission
+                "
+                [value]="presenter(record, 'assignedTo')"
+              >
+              </app-view-item-relation-to-one>
+            </div>
+            <div class="col-md-3">
+              <app-view-item-relation-to-one
+                [label]="fields.transferTo.label"
+                [url]="fields.transferTo.viewUrl"
+                [permission]="
+                  fields.transferTo.readPermission
+                "
+                [value]="presenter(record, 'transferTo')"
+              >
+              </app-view-item-relation-to-one>
+            </div>
+
+            <div class="col-md-3">
+              <app-view-item-relation-to-one
+                [label]="fields.createdBy.label"
+                [url]="fields.createdBy.viewUrl"
+                [permission]="
+                  fields.createdBy.readPermission
+                "
+                [value]="presenter(record, 'createdBy')"
+              >
+              </app-view-item-relation-to-one>
+            </div>
+            <div class="col-md-3">
+              <app-view-item-text
+                [label]="fields.region.label"
+                [value]="presenter(record, 'region')"
+              >
+              </app-view-item-text>
+            </div>
+          </div>
+
+          <mat-divider
+            style="margin-top: 10px; margin-bottom: 10px"
+          ></mat-divider>
+          <div class="row">
+            <div class="col-md-6">
+              <app-view-item-relation-to-many
+                [label]="fields.tags.label"
+                [url]="fields.tags.viewUrl"
+                [permission]="fields.tags.readPermission"
+                [value]="presenter(record, 'tags')"
+              >
+              </app-view-item-relation-to-many>
+            </div>
+            <div class="col-md-6">
+              <app-view-item-text
+                [label]="fields.position.label"
+                [value]="presenter(record, 'position')"
+              >
+              </app-view-item-text>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab [label]="i18n('common.attachements')">
+        <div class="mat-tab">
+          <div class="row">
+            <div class="col-md-8">
+              <app-view-item-images
+                [label]="fields.images.label"
+                [value]="presenter(record, 'images')"
+              >
+              </app-view-item-images>
+            </div>
+            <div class="col-md-4">
+              <div *ngFor="let aud of record.audio">
+                <div
+                  class="col-md-4"
+                  *ngIf="record.audio.length !== 0"
+                >
+                  <app-vjs-player
+                    [label]="fields.audio.label"
+                    [options]="{
+                      autoplay: false,
+                      controls: true,
+                      sources: [
+                        {
+                          src:
+                            'http://172.16.224.151:8080/api/file/download?privateUrl=' +
+                            aud.privateUrl,
+                          type: 'audio/mp3'
+                        }
+                      ]
+                    }"
+                  >
+                  </app-vjs-player>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div
+              class="col-md-8"
+              *ngIf="record.videos.length !== 0"
+            >
+              <div *ngFor="let vid of record.videos">
+                <app-vjs-player
+                  [label]="fields.videos.label"
+                  [options]="{
+                    autoplay: false,
+                    controls: true,
+                    sources: [
+                      {
+                        src:
+                          'http://172.16.224.151:8080/api/file/download?privateUrl=' +
+                          vid.privateUrl,
+                        type: 'video/mp4'
+                      }
+                    ]
+                  }"
+                >
+                </app-vjs-player>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <app-view-item-files
+                [label]="fields.documents.label"
+                [value]="presenter(record, 'documents')"
+              >
+              </app-view-item-files>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

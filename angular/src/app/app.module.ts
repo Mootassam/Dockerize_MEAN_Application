@@ -1,35 +1,25 @@
-// app.module.ts
-
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { AddBookComponent } from './components/add-book/add-book.component';
-import { BookDetailComponent } from './components/book-detail/book-detail.component';
-import { BooksListComponent } from './components/books-list/books-list.component';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  AppRoutingModule,
+  routedComponents,
+} from 'src/app/app-routing.module';
+import { AppComponent } from 'src/app/app.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AddBookComponent,
-    BookDetailComponent,
-    BooksListComponent
-  ],
+  declarations: [AppComponent, ...routedComponents],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-
-export class AppModule { }
+export class AppModule {}

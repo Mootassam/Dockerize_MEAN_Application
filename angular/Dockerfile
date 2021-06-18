@@ -20,10 +20,11 @@ RUN npm install
 COPY . .
 
 # Run the angular in product
-RUN npm run build
+
 
 # Stage 2
 FROM nginx:1.13.12-alpine
 
 #copy dist content to html nginx folder, config nginx to point in index.html
+
 

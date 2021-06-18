@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>
+  <app-i18n key="entities.testimony.new.title"></app-i18n>
+</h1>
+<mat-dialog-content>
+  <app-testimony-form
+    [saveLoading]="saveLoading"
+    (save)="doCreate($event)"
+    (cancel)="doCancel()"
+    [modal]="true"
+  ></app-testimony-form>
+</mat-dialog-content>

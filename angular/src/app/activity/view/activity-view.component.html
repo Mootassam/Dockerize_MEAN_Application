@@ -1,0 +1,50 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="entities.activity.view.title"></app-i18n>
+  </h1>
+
+  <app-activity-view-toolbar></app-activity-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.comment.label"
+      [value]="presenter(record, 'comment')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.date.label"
+      [value]="presenter(record, 'date')"
+    ></app-view-item-text>
+
+    <app-view-item-images
+      [label]="fields.images.label"
+      [value]="presenter(record, 'images')"
+    ></app-view-item-images>
+
+    <app-view-item-files
+      [label]="fields.audio.label"
+      [value]="presenter(record, 'audio')"
+    ></app-view-item-files>
+
+    <app-view-item-files
+      [label]="fields.documents.label"
+      [value]="presenter(record, 'documents')"
+    ></app-view-item-files>
+
+    <app-view-item-files
+      [label]="fields.video.label"
+      [value]="presenter(record, 'video')"
+    ></app-view-item-files>
+
+    <app-view-item-text
+      [label]="fields.position.label"
+      [value]="presenter(record, 'position')"
+    ></app-view-item-text>
+  </div>
+</div>

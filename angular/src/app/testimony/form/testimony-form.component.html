@@ -1,0 +1,402 @@
+<form class="form" (ngSubmit)="doSave()" [formGroup]="form" #ngForm="ngForm" *ngIf="form">
+  <mat-tab-group>
+    <mat-tab [label]="i18n('common.information')" class="tab">
+      <div class="mat-tab">
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.testimonyType.label }}</mat-label>
+              <mat-select [formControlName]="fields.testimonyType.name">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let option of fields.testimonyType.options" [value]="option.id">
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <app-validations [control]="form.get(fields.testimonyType.name)" [label]="fields.testimonyType.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <app-testimony-category-form-field [control]="form.get(fields.category.name)"
+              [label]="fields.category.label" [required]="fields.category.required" [fetchFn]="fields.category.fetchFn"
+              [mapperFn]="fields.category.mapperFn" [showCreate]="!modal" [submitted]="ngForm.submitted" mode="single">
+            </app-testimony-category-form-field>
+          </div>
+
+          <div class="col-md-4">
+            <app-tags-form-field [control]="form.get(fields.tags.name)" [label]="fields.tags.label"
+              [required]="fields.tags.required" [fetchFn]="fields.tags.fetchFn" [mapperFn]="fields.tags.mapperFn"
+              [showCreate]="!modal" [submitted]="ngForm.submitted" mode="multiple"></app-tags-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.title.label }}</mat-label>
+              <input matInput [formControlName]="fields.title.name" [required]="fields.title.required" />
+
+              <mat-error>
+                <app-validations [control]="form.get(fields.title.name)" [label]="fields.title.label"></app-validations>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+          <div class="col-md-4">
+
+
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.contact.label }}</mat-label>
+              <input matInput [formControlName]="fields.contact.name" [required]="fields.contact.required" />
+
+              <mat-error>
+                <app-validations [control]="form.get(fields.contact.name)" [label]="fields.contact.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+
+
+          </div>
+          <div class="col-md-4">
+
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.status.label }}</mat-label>
+              <mat-select [formControlName]="fields.status.name">
+                <mat-option *ngFor="let option of fields.status.options" [value]="option.id">
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <app-validations [control]="form.get(fields.status.name)" [label]="fields.status.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+
+
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.description.label }}</mat-label>
+              <textarea matInput [formControlName]="fields.description.name" [rows]="4"
+                [required]="fields.description.required"></textarea>
+
+              <mat-error>
+                <app-validations [control]="form.get(fields.description.name)" [label]="fields.description.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+
+
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.region.label }}</mat-label>
+              <mat-select [formControlName]="fields.region.name">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let option of fields.region.options" [value]="option.id">
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <app-validations [control]="form.get(fields.region.name)" [label]="fields.region.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.priority.label }}</mat-label>
+              <mat-select [formControlName]="fields.priority.name">
+                <mat-option *ngFor="let option of fields.priority.options" [value]="option.id">
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+              <mat-error>
+                <app-validations [control]="form.get(fields.priority.name)" [label]="fields.priority.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+
+            <mat-form-field floatLabel="always" appearance="outline">
+              <mat-label>{{ fields.position.label }}</mat-label>
+              <input matInput [formControlName]="fields.position.name" [required]="fields.position.required" />
+
+              <mat-error>
+                <app-validations [control]="form.get(fields.position.name)" [label]="fields.position.label">
+                </app-validations>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-4" *ngIf="hasPermissionToAssignTestimonyToUser">
+            <app-user-form-field [control]="form.get(fields.assignedTo.name)" [label]="fields.assignedTo.label"
+              [required]="fields.assignedTo.required" [fetchFn]="fields.assignedTo.fetchFn"
+              [mapperFn]="fields.assignedTo.mapperFn" [showCreate]="!modal" [submitted]="ngForm.submitted"
+              mode="single"></app-user-form-field>
+
+          </div>
+          <div class="col-md-4">
+
+
+            <app-partner-form-field [control]="form.get(fields.transferTo.name)" [label]="fields.transferTo.label"
+              [required]="fields.transferTo.required" [fetchFn]="fields.transferTo.fetchFn"
+              [mapperFn]="fields.transferTo.mapperFn" [showCreate]="!modal" [submitted]="ngForm.submitted"
+              mode="single"></app-partner-form-field>
+
+          </div>
+          <div class="col-md-4">
+
+            <div class="app-form-field app-form-field__boolean anonymous">
+              <mat-slide-toggle color="accent" [formControlName]="fields.anonymous.name">
+                {{ fields.anonymous.label }}
+              </mat-slide-toggle>
+
+              <div class="app-form-error">
+                <app-validations [control]="form.get(fields.anonymous.name)" [label]="fields.anonymous.label"
+                  [ngForm]="ngForm"></app-validations>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </mat-tab>
+    <mat-tab [label]="i18n('common.attachements')">
+      <div class="mat-tab">
+        <div class="row">
+          <div class="col-md-6">
+
+            <app-image-form-field [formControl]="form.get(fields.images.name)" [label]="fields.images.label"
+              [storage]="fields.images.storage" [required]="fields.images.required" [max]="fields.images.max"
+              [submitted]="ngForm.submitted"></app-image-form-field>
+
+          </div>
+          <div class="col-md-6">
+
+            <app-file-form-field [formControl]="form.get(fields.videos.name)" [label]="fields.videos.label"
+              [formats]="fields.videos.formats" [storage]="fields.videos.storage" [required]="fields.videos.required"
+              [max]="fields.videos.max" [submitted]="ngForm.submitted"></app-file-form-field>
+
+            <app-file-form-field [formControl]="form.get(fields.audio.name)" [label]="fields.audio.label"
+              [formats]="fields.audio.formats" [storage]="fields.audio.storage" [required]="fields.audio.required"
+              [max]="fields.audio.max" [submitted]="ngForm.submitted"></app-file-form-field>
+
+            <app-file-form-field [formControl]="form.get(fields.documents.name)" [label]="fields.documents.label"
+              [formats]="fields.documents.formats" [storage]="fields.documents.storage"
+              [required]="fields.documents.required" [max]="fields.documents.max" [submitted]="ngForm.submitted">
+            </app-file-form-field>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-tab>
+    <mat-tab [label]="i18n('common.history')" *ngIf="isEditing">
+      <div class="mat-tab">
+
+        <div class="filter">
+          <app-filter-preview [values]="formActivity.value" [fields]="activityFields" [expanded]="expanded"
+            (click)="doToggleExpanded()"></app-filter-preview>
+          <form (ngSubmit)="doFilter()" [formGroup]="formActivity" #ngForm="ngForm" *ngIf="formActivity && expanded">
+            <div class="row">
+              <div class="col-xs-12 col-lg-6">
+                <mat-form-field floatLabel="always" appearance="outline">
+                  <mat-label>{{ activityFields.comment.label }}</mat-label>
+                  <input matInput [formControlName]="activityFields.comment.name" />
+                  <mat-error>
+                    <app-validations [control]="formActivity.get(activityFields.comment.name)"
+                      [label]="activityFields.comment.label"></app-validations>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+            </div>
+
+            <div class="filter-buttons">
+              <button mat-raised-button [disabled]="loading" color="primary" type="submit">
+                <mat-icon inline fontSet="fas" fontIcon="fa-search"></mat-icon>&#160;
+                <app-i18n key="common.search"></app-i18n>
+              </button>
+              <button mat-flat-button [disabled]="loading" (click)="doResetActivity()" type="button" color="accent">
+                <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+                <app-i18n key="common.reset"></app-i18n>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="table-responsive">
+          <table style="width: 100%;" mat-table [dataSource]="service.rows" matSort
+            (matSortChange)="service.doChangeSort($event)" [matSortActive]="service.sorter.columnKey"
+            [matSortDirection]="service.sorter.order">
+            <!-- <ng-container matColumnDef="_select">
+            <th mat-header-cell *matHeaderCellDef>
+              <app-table-th-checkbox
+                [rows]="service.rows"
+                [selectedKeys]="service.selectedKeys"
+              ></app-table-th-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <app-table-td-checkbox
+                [row]="row"
+                [selectedKeys]="service.selectedKeys"
+              ></app-table-td-checkbox>
+            </td>
+          </ng-container> -->
+
+            <ng-container [matColumnDef]="activityFields.comment.name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{ activityFields.comment.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ presenterActivity(row, 'comment') }}
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="activityFields.createdAt.name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{ activityFields.createdAt.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{date(presenterActivity(row, 'createdAt'))}}
+                <!-- {{ presenterActivity(row, 'createdAt') }} -->
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="activityFields.images.name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ activityFields.images.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-table-item-images [value]="presenterActivity(row, 'images')"></app-table-item-images>
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="activityFields.audio.name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ activityFields.audio.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-table-item-files [value]="presenterActivity(row, 'audio')"></app-table-item-files>
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="activityFields.documents.name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ activityFields.documents.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-table-item-files [value]="presenterActivity(row, 'documents')"></app-table-item-files>
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="activityFields.video.name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ activityFields.video.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <app-table-item-files [value]="presenterActivity(row, 'video')"></app-table-item-files>
+              </td>
+            </ng-container>
+            <ng-container [matColumnDef]="activityFields.position.name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{ activityFields.position.label }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ presenterActivity(row, 'position') }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="_actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td style="width: 180px; text-align: right;" mat-cell *matCellDef="let row">
+                <!-- <button
+                mat-icon-button
+                type="button"
+                color="primary"
+                [routerLink]="['/activity', row.id]"
+                [matTooltip]="i18n('common.view')"
+              >
+                <mat-icon>search</mat-icon>
+              </button> -->
+
+                <button mat-icon-button type="button" color="primary" [routerLink]="['/activity', row.id, 'edit']"
+                  [matTooltip]="i18n('common.edit')">
+                  <mat-icon>edit</mat-icon>
+                </button>
+
+                <button mat-icon-button type="button" color="primary" (click)="doDestroy(row.id)"
+                  [matTooltip]="i18n('common.destroy')">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: this.columns"></tr>
+          </table>
+
+          <div *ngIf="!service.loading && !service.count" class="mat-table-message">
+            <app-i18n key="table.noData"></app-i18n>
+          </div>
+
+          <div *ngIf="service.loading" class="mat-table-message">
+            <app-i18n key="table.loading"></app-i18n>
+          </div>
+        </div>
+
+        <mat-paginator [disabled]="service.loading" [pageIndex]="service.paginationPageIndex"
+          [pageSize]="service.paginationPageSize" [pageSizeOptions]="[10, 20, 30, 40]" [length]="service.count"
+          (page)="service.doChangePagination($event)" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-buttonsLeft" [class.form-buttons-modal]="modal">
+        <button mat-flat-button type="button">
+          <app-activity-form-field *ngIf="isEditing" [control]="form.get(fields.activity.name)"
+            [label]="fields.activity.label" [required]="fields.activity.required" [fetchFn]="fields.activity.fetchFn"
+            [mapperFn]="fields.activity.mapperFn" [showCreate]="!modal" [submitted]="ngForm.submitted" mode="multiple">
+          </app-activity-form-field>
+        </button>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="form-buttons" [class.form-buttons-modal]="modal">
+
+        <button mat-raised-button [disabled]="saveLoading" color="primary" type="submit">
+          <mat-icon inline fontSet="far" fontIcon="fa-save"></mat-icon>&#160;
+          <app-i18n key="common.save"></app-i18n>
+        </button>
+        <button mat-flat-button color="accent" [disabled]="saveLoading" (click)="doReset()" type="button">
+          <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+          <app-i18n key="common.reset"></app-i18n>
+        </button>
+
+        <button mat-flat-button [disabled]="saveLoading" color="warn" type="button" (click)="cancel.emit()">
+          <mat-icon inline fontSet="fas" fontIcon="fa-times"></mat-icon>&#160;
+          <app-i18n key="common.cancel"></app-i18n>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+</form>

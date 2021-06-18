@@ -1,0 +1,369 @@
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu" class="sidebar-menu">
+      <ul>
+        <li class="submenu">
+          <a href="#"
+            ><i class="fa fa-toolbox"></i>
+            <span>
+              <app-i18n
+                key="menu.administration"
+              ></app-i18n>
+            </span>
+            <span class="menu-arrow"></span
+          ></a>
+
+          <ul style="display: none">
+            <li>
+              <a
+                *ngIf="DashboardService.hasPermissionToRead"
+                routerLink=""
+                [routerLinkActive]="['is-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <span>
+                  <app-i18n key="dashboard.menu"></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="MemberService.hasPermissionToRead"
+                routerLink="/member"
+                [routerLinkActive]="['is-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <span>
+                  <app-i18n key="dashboard.menu"></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="planService.hasPermissionToRead"
+                routerLink="/plan"
+                [routerLinkActive]="['is-active']"
+              >
+                <mat-icon>credit_card</mat-icon>
+                <span>
+                  <app-i18n key="plan.menu"></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="planService.hasPermissionToRead"
+                routerLink="/plan"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n key="plan.menu"></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="userService.hasPermissionToRead"
+                routerLink="/user"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n key="user.menu"></app-i18n>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a href="#"
+            ><i class="fa fa-info-circle"></i>
+            <span>
+              <app-i18n key="menu.informations"></app-i18n>
+            </span>
+            <span class="menu-arrow"></span
+          ></a>
+
+          <ul style="display: none">
+            <li>
+              <a
+                *ngIf="
+                  informationCategoryService.hasPermissionToRead
+                "
+                routerLink="/information-category"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.informationCategory.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="
+                  informationsService.hasPermissionToRead
+                "
+                routerLink="/informations"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.informations.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a href="#"
+            ><i class="fa fa-hands-helping"></i>
+            <span>
+              <app-i18n key="menu.help"></app-i18n>
+            </span>
+            <span class="menu-arrow"></span
+          ></a>
+          <ul style="display: none">
+            <li>
+              <a
+                *ngIf="
+                  testimonyCategoryService.hasPermissionToRead
+                "
+                routerLink="/testimony-category"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.testimonyCategory.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                style="display: none"
+                *ngIf="activityService.hasPermissionToRead"
+                routerLink="/activity"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.activity.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="testimonyService.hasPermissionToRead"
+                routerLink="/testimony"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.testimony.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a href="#"
+            ><i class="fa fa-users"></i>
+            <span>
+              <app-i18n key="menu.common"></app-i18n>
+            </span>
+            <span class="menu-arrow"></span
+          ></a>
+          <ul style="display: none">
+            <li>
+              <a
+                *ngIf="tagsService.hasPermissionToRead"
+                routerLink="/tags"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.tags.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="partnerService.hasPermissionToRead"
+                routerLink="/partner"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.partner.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                *ngIf="
+                  partnerCategoryService.hasPermissionToRead
+                "
+                routerLink="/partner-category"
+                [routerLinkActive]="['is-active']"
+              >
+                <span>
+                  <app-i18n
+                    key="entities.partnerCategory.menu"
+                  ></app-i18n>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- 
+<mat-nav-list>
+  <button
+    disabled
+    *ngIf="planService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>credit_card</mat-icon>
+    <app-i18n key="plan.menu"></app-i18n>
+  </button>
+  <button
+    disabled
+    *ngIf="userService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>person_add</mat-icon>
+    <span>
+      <app-i18n key="user.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="auditLogService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>history</mat-icon>
+    <span>
+      <app-i18n key="auditLog.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="settingsService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>settings</mat-icon>
+    <span>
+      <app-i18n key="settings.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="informationCategoryService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n
+        key="entities.informationCategory.menu"
+      ></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="informationsService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n key="entities.informations.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="testimonyCategoryService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n
+        key="entities.testimonyCategory.menu"
+      ></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="activityService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n key="entities.activity.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="testimonyService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n key="entities.testimony.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="tagsService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>bookmarks</mat-icon>
+    <span>
+      <app-i18n key="entities.tags.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="partnerService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n key="entities.partner.menu"></app-i18n>
+    </span>
+  </button>
+  <button
+    disabled
+    *ngIf="partnerCategoryService.lockedForCurrentPlan"
+    
+    class="app-menu-item-locked"
+  >
+    <mat-icon>chevron_right</mat-icon>
+    <span>
+      <app-i18n
+        key="entities.partnerCategory.menu"
+      ></app-i18n>
+    </span>
+  </button>
+</mat-nav-list> -->

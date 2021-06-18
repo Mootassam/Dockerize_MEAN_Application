@@ -1,0 +1,32 @@
+<div *ngIf="loading" class="app-page-spinner">
+  <mat-spinner color="accent"></mat-spinner>
+</div>
+<div *ngIf="!loading">
+
+<mat-selection-list >
+<span *ngIf="count !=0">
+<mat-list-option *ngFor="let item of record  ; let i = index">
+<span  class="material-icons" matListIcon style="color : #ED7205;" *ngIf="item.priority == 'medium'  "  title="{{medium}}">
+stop_circle
+</span>
+
+<span  class="material-icons" matListIcon style="color:#D60233;" *ngIf="item.priority == 'high'  "  title="{{dang}}" >
+stop_circle 
+</span>
+<span  class="material-icons" matListIcon style="color: #EED300;" *ngIf="item.priority == 'low' "  title="{{low}}" >
+stop_circle
+</span>
+
+  <h5   matLine > {{item.title}}<span> -- {{item.region}} </span>  </h5>
+  <p  matLine >
+    <span class="textime"><mat-icon class="textime">timer</mat-icon>{{dateFromNow(item.createdAt)}} </span>
+
+  </p>
+</mat-list-option> 
+</span>
+<span *ngIf="count == 0">
+  <app-i18n key="table.noData"></app-i18n>
+ </span>
+</mat-selection-list>
+
+</div>

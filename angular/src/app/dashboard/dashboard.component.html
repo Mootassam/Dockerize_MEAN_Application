@@ -1,0 +1,79 @@
+<div style="margin-top: 16px;">
+  <div class="row">
+
+    <div
+      style="margin-bottom: 1em;"
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-4"
+    >
+    <div *ngIf="loadings" class="app-page-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+    <div *ngIf="!loadings">
+    <app-dashboard-chart
+    [props]="bar"
+    ></app-dashboard-chart>
+  </div>
+
+    </div>
+    <div
+      style="margin-bottom: 1em;"
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-4"
+    >
+    <div *ngIf="loadingt" class="app-page-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+    <div *ngIf="!loadingt">
+    <app-dashboard-chart
+    [props]="barAssign"
+  ></app-dashboard-chart>
+
+    </div>
+
+    </div>
+    <div
+      style="margin-bottom: 1em;"
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-4"
+    >
+    <div *ngIf="loadingp" class="app-page-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+    <div *ngIf="!loadingp">
+    <app-dashboard-chart
+    [props]="barPartenar"
+    ></app-dashboard-chart>
+    </div>
+     </div>
+    <div
+      style="margin-bottom: 1em;"
+      class="col-xs-12 col-md-6"
+    >
+
+    <div *ngIf="loadingr" class="app-page-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+    <div *ngIf="!loadingr">
+    <app-dashboard-chart
+    [props]="barRegion"
+    ></app-dashboard-chart>
+    </div>
+    
+  </div>
+    <div
+      style="margin-bottom: 1em;"
+      class="col-xs-12 col-md-6"
+    >    <div *ngIf="loadingc" class="app-page-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+    <div *ngIf="!loadingc">
+    <app-dashboard-chart
+    [props]="doughnut"
+    ></app-dashboard-chart> 
+     </div>
+
+
+  
+  </div>
+
+ 
+  
+</div>

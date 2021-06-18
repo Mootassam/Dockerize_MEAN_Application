@@ -1,0 +1,30 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="entities.tags.view.title"></app-i18n>
+  </h1>
+
+  <app-tags-view-toolbar></app-tags-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.titleFR.label"
+      [value]="presenter(record, 'titleFR')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.titleEN.label"
+      [value]="presenter(record, 'titleEN')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.titleAR.label"
+      [value]="presenter(record, 'titleAR')"
+    ></app-view-item-text>
+  </div>
+</div>

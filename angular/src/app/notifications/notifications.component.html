@@ -1,0 +1,47 @@
+<div class="i18n-select" >
+<button mat-button [matMenuTriggerFor]="notif" title="new testimony added" [disabled]="count == 0">
+<mat-icon matBadge="{{counw}}" matBadgeColor="warn">notifications</mat-icon>
+</button>
+<mat-menu #notif="matMenu" class="customize" >
+
+                    <div class="dropdown-menu notifications">
+
+<div class="topnav-dropdown-header">
+<span>Notifications</span>
+</div>
+<div class="drop-scroll">
+<ul class="notification-list">
+
+<li class="notification-message" *ngFor="let item of record" [ngClass]="item.read ? 'isRead' : 'notRead' " (click)="markAsRead(item.testimony_Id.id)" >
+<a>
+<div class="media">
+<span class="avatar">
+                    <span class="material-icons" style="font-size: 35px;">
+                                        person
+                                        </span>
+</span>
+<div class="media-body" >
+<p class="noti-details"> Une nouvelle témoignage a été ajoutée</p>
+<p class="noti-time"><span class="notification-time">{{time(item.created)}}</span></p></div>
+</div>
+</a>
+</li>
+
+
+
+
+</ul>
+</div>
+<div class="topnav-dropdown-footer">
+<a class="allView" (click)="Goto()"><app-i18n key="notifications.viewll"></app-i18n>  </a>
+<a class="allRead" (click)="ALlRead()"><app-i18n key="notifications.readll"></app-i18n> </a>
+<a class="allDelete" (click)="DeleteALl()"><app-i18n key="notifications.deletll"></app-i18n>  </a>
+</div>
+                    </div>
+</mat-menu>
+</div>
+
+
+
+
+

@@ -1,0 +1,66 @@
+<form class="form" (ngSubmit)="doSave()" [formGroup]="form" #ngForm="ngForm" *ngIf="form">
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.comment.label }}</mat-label>
+    <textarea matInput [formControlName]="fields.comment.name" [rows]="4" [required]="fields.comment.required"
+      appAutofocus></textarea>
+
+    <mat-error>
+      <app-validations [control]="form.get(fields.comment.name)" [label]="fields.comment.label"></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.date.label }}</mat-label>
+    <input matInput [matDatepicker]="picker" [formControlName]="fields.date.name">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error>
+      <app-validations [control]="form.get(fields.date.name)" [label]="fields.date.label"></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <app-image-form-field [formControl]="form.get(fields.images.name)" [label]="fields.images.label"
+    [storage]="fields.images.storage" [required]="fields.images.required" [max]="fields.images.max"
+    [submitted]="ngForm.submitted"></app-image-form-field>
+
+  <app-audio-form-field [formControl]="form.get(fields.audio.name)" [label]="fields.audio.label"
+    [formats]="fields.audio.formats" [storage]="fields.audio.storage" [required]="fields.audio.required"
+    [max]="fields.audio.max" [submitted]="ngForm.submitted"></app-audio-form-field>
+
+  <!-- <app-file-form-field [formControl]="form.get(fields.audio.name)" [label]="fields.audio.label"
+    [formats]="fields.audio.formats" [storage]="fields.audio.storage" [required]="fields.audio.required"
+    [max]="fields.audio.max" [submitted]="ngForm.submitted"></app-file-form-field> -->
+
+  <app-file-form-field [formControl]="form.get(fields.documents.name)" [label]="fields.documents.label"
+    [formats]="fields.documents.formats" [storage]="fields.documents.storage" [required]="fields.documents.required"
+    [max]="fields.documents.max" [submitted]="ngForm.submitted"></app-file-form-field>
+
+  <app-video-form-field [formControl]="form.get(fields.video.name)" [label]="fields.video.label"
+    [formats]="fields.video.formats" [storage]="fields.video.storage" [required]="fields.video.required"
+    [max]="fields.video.max" [submitted]="ngForm.submitted"></app-video-form-field>
+
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>{{ fields.position.label }}</mat-label>
+    <input matInput [formControlName]="fields.position.name" [required]="fields.position.required" />
+
+    <mat-error>
+      <app-validations [control]="form.get(fields.position.name)" [label]="fields.position.label"></app-validations>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="form-buttons" [class.form-buttons-modal]="modal">
+    <button mat-flat-button [disabled]="saveLoading" color="warn" type="button" (click)="cancel.emit()">
+      <mat-icon inline fontSet="fas" fontIcon="fa-times"></mat-icon>&#160;
+      <app-i18n key="common.cancel"></app-i18n>
+    </button>
+    <button mat-flat-button [disabled]="saveLoading" color="accent" (click)="doReset()" type="button">
+      <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+
+    <button mat-raised-button [disabled]="saveLoading" color="primary" type="submit">
+      <mat-icon inline fontSet="far" fontIcon="fa-save"></mat-icon>&#160;
+      <app-i18n key="common.save"></app-i18n>
+    </button>
+  </div>
+</form>
